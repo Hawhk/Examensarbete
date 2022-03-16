@@ -12,5 +12,17 @@ fun Application.configureRouting() {
         get("/") {
             call.respondText("Hello World!")
         }
+        get("/small/static") {
+            call.respondText("Small static page")
+        }
+        get("/small/dynamic") {
+            call.respondText("Small dynamic page")
+        }
+        get("/large/static") {
+            call.respondText("Large static page")
+        }
+        get("/large/dynamic") {
+            call.respondText("Large dynamic page")
+        }
     }
 }

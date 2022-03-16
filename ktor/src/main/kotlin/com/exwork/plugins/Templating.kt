@@ -14,7 +14,8 @@ fun Application.configureTemplating() {
 
     routing {
         get("/html-freemarker") {
-            call.respond(FreeMarkerContent("index.ftl", mapOf("data" to IndexData(listOf(1, 2, 3))), ""))
+            val data = listOf(2, 5);
+            call.respond(FreeMarkerContent("index.ftl", mapOf("data" to data)));
         }
     }
 }
