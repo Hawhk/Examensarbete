@@ -9,12 +9,12 @@ import io.ktor.response.*
 import io.ktor.request.*
 import kotlin.test.*
 import io.ktor.server.testing.*
-import com.exwork.plugins.*
+import com.exwork.controller.*
 
 class ApplicationTest {
     @Test
     fun testRoot() {
-        withTestApplication({ configureRouting() }) {
+        withTestApplication({ configureTemplating() }) {
             handleRequest(HttpMethod.Get, "/").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
                 assertEquals("Hello World!", response.content)
