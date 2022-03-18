@@ -4,12 +4,13 @@ import freemarker.cache.*
 import io.ktor.freemarker.*
 import io.ktor.application.*
 import io.ktor.response.*
-import io.ktor.request.*
 import io.ktor.routing.*
+
+import com.exwork.controller.*
 
 fun Application.configureTemplating() {
     install(FreeMarker) {
-        templateLoader = ClassTemplateLoader(this::class.java.classLoader, "templates")
+        templateLoader = ClassTemplateLoader(this::class.java.classLoader, "/view")
     }
 
     routing {
@@ -21,6 +22,7 @@ fun Application.configureTemplating() {
             val data = listOf(2, 5);
             call.respond(FreeMarkerContent("index.ftl", mapOf("data" to data)));
         }
+        static()
+        dynamic()
     }
 }
-data class IndexData(val items: List<Int>)

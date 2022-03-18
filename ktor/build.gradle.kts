@@ -11,6 +11,7 @@ group = "com.exwork"
 version = "0.0.1"
 application {
     mainClass.set("com.exwork.ApplicationKt")
+    applicationDefaultJvmArgs = listOf("-Dio.ktor.development=true")
 }
 
 repositories {
