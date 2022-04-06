@@ -7,22 +7,41 @@ import org.jetbrains.exposed.dao.id.*
 
 import io.ktor.application.*
 
-object Users : IntIdTable() {
-    val name = varchar("name", 50)
-    val age = integer("age").nullable()
+object Articles : IntIdTable() {
+    val header = varchar("header", 255)
+    val description = varchar("description", 255)
 }
 
-class User(id: EntityID<Int>) : IntEntity(id) {
-    companion object : IntEntityClass<User>(Users)
-    var name by Users.name
-    var age by Users.age
+class Article(id: EntityID<Int>) : IntEntity(id) {
+    companion object : IntEntityClass<Article>(Articles)
+    var header by Articles.header
+    var description by Articles.description
+}
+
+object Sections : IntIdTable() {
+    val header = varchar("header", 255)
+    var body = text("body")
+    val article = reference("article", Articles)
+}
+
+class Section(id: EntityID<Int>) : IntEntity(id) {
+    companion object : IntEntityClass<Section>(Sections)
+    var header by Sections.header
+    var body by Sections.body
+    var article by Article referencedOn Sections.article
 }
 
 fun Application.tables() {
-    SchemaUtils.createMissingTablesAndColumns(Users)
+    SchemaUtils.createMissingTablesAndColumns(Articles, Sections)
 
-    val hampus = User.new {
-        name = "Hampus Hurtig"
-        age = 22
+    val article1 = Article.new {
+        header = "Hampus Hurtig"
+        description = "En fin beskrivning om mig"
+    }
+
+    val section = Section.new { 
+        header = "wow!"
+        body = "Body man!"
+        article = article1
     }
 }
