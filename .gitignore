@@ -51,7 +51,7 @@
 
 ktor/bin
 ktor/build
-ktor/gradle
+ktor/gradle/gradle-wrapper.jar
 .gradle
 .idea
 
