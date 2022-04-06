@@ -5,8 +5,11 @@ import io.ktor.freemarker.*
 import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.routing.*
+import io.ktor.http.content.*
 
 import com.exwork.controller.*
+
+
 
 fun Application.configureTemplating() {
     install(FreeMarker) {
@@ -14,15 +17,12 @@ fun Application.configureTemplating() {
     }
 
     routing {
-        get("/") {
-            call.respond("Hello World!")
+        static("assets") {
+            resources("css")
+            resources("assets")
+            resources("js")
         }
-
-        get("/html-freemarker") {
-            val data = listOf(2, 5);
-            call.respond(FreeMarkerContent("index.ftl", mapOf("data" to data)));
-        }
-        static()
-        dynamic()
+        staticPages()
+        dynamicPages()
     }
 }

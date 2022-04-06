@@ -17,8 +17,6 @@ fun main() {
         transaction {
             tables()
         }
-        
-
         configureTemplating()
     }.start(wait = true)
 }
