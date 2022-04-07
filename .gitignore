@@ -1,5 +1,5 @@
 ### VisualStudioCode template
-.vscode/*
+.vscode
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -48,6 +48,13 @@
 # .idea/modules
 # *.iml
 # *.ipr
+
+ktor/bin
+ktor/build
+ktor/gradle/gradle-wrapper.jar
+.gradle
+.idea
+
 
 # CMake
 cmake-build-*/
