@@ -36,8 +36,16 @@ fun Route.dynamicPages() {
         }
         route("/large") {
             routeGet {
-                val text = "A large dynamic page!"
-                call.respondTemplate("dynamic.ftl", mapOf("text" to text))
+                val article = transaction {
+                    Article.findById(2)
+                }
+                val sections = ArrayList<Section>()
+
+                transaction {
+                    article?.sections?.forEach { sections.add(it) }
+                }
+
+                call.respondTemplate("dynamic.ftl", mapOf("article" to article, "sections" to sections))
             }
         }
     }
