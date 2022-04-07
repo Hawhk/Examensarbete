@@ -33,7 +33,7 @@ class Article(id: EntityID<Int>) : IntEntity(id) {
 object Sections : IntIdTable() {
     val header = varchar("header", 255)
     val body = text("body")
-    val article = reference("article", Articles)
+    val article = reference("article_id", Articles)
 }
 
 class Section(id: EntityID<Int>) : IntEntity(id) {
@@ -41,29 +41,4 @@ class Section(id: EntityID<Int>) : IntEntity(id) {
     var header by Sections.header
     var body by Sections.body
     var article by Article referencedOn Sections.article
-}
-
-fun Application.tables() {
-    SchemaUtils.drop(Articles, Sections)
-    SchemaUtils.create(Articles, Sections)
-
-    val article1 = Article.new {
-        header = "Hampus Hurtig"
-        subHeader = "En cool grab!"
-        description = "En fin beskrivning om mig"
-        datePosted = DateTime()
-        postedBy = "Me!"
-    }
-
-    Section.new { 
-        header = "wow!"
-        body = "Body man!"
-        article = article1
-    }
-
-    Section.new { 
-        header = "wow2!"
-        body = "Body man2!"
-        article = article1
-    }
 }
