@@ -1,0 +1,16 @@
+<%- include("header", {title: title} ) %>
+<ul>
+    <% for( const item of list ) { %>
+        <li><%= item.id + ": " + item.header %></li>
+        <ul>
+            <li><%= item.subHeader %></li>
+            <li><%= item.description %></li>
+            <li><%= item.datePosted %></li>
+            <li><%= item.postedBy %></li>
+            <li><strong>Sections</strong></li>
+            <li><%= item.Sections[0].id %></li>
+            <li><%= item.Sections[0].header %></li>
+        </ul>
+    <% } %>
+</ul>
+<%- include("footer") %>
