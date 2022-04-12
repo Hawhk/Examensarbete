@@ -11,7 +11,6 @@ CREATE TABLE IF NOT EXISTS articles (
     picture_url varchar(128)
 );
 
-
 CREATE TABLE IF NOT EXISTS sections (
     id SERIAL PRIMARY KEY,
     header varchar(255) NOT NULL,
