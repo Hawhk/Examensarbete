@@ -12,19 +12,24 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Article.hasMany(models.Section, {
-        foreignKey: "articleId",
+        foreignKey: "article_id",
+        
       })
     }
   }
   Article.init({
     header: DataTypes.STRING,
-    subHeader: DataTypes.STRING,
+    sub_header: DataTypes.STRING,
     description: DataTypes.STRING,
-    datePosted: DataTypes.DATE,
-    postedBy: DataTypes.STRING
+    date_posted: DataTypes.DATE,
+    posted_by: DataTypes.STRING,
+    picture_url: DataTypes.TEXT,
   }, {
     sequelize,
     modelName: 'Article',
+    tableName: 'articles',
+    underscore: true,
+    timestamps: false,
   });
   return Article;
 };

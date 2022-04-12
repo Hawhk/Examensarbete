@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Section.belongsTo(models.Article, {
-        foreignKey: "articleId",
+        foreignKey: "article_id",
         onDelete: "CASCADE"
       })
     }
@@ -20,10 +20,14 @@ module.exports = (sequelize, DataTypes) => {
   Section.init({
     header: DataTypes.STRING,
     body: DataTypes.TEXT,
-    articleId: DataTypes.INTEGER
+    article_id: DataTypes.INTEGER,
+    picture_url: DataTypes.TEXT,
   }, {
     sequelize,
     modelName: 'Section',
+    tableName: 'sections',
+    underscore: true,
+    timestamps: false,
   });
   return Section;
 };

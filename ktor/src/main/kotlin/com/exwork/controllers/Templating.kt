@@ -18,8 +18,12 @@ fun Application.configureTemplating() {
 
     routing {
         static("assets") {
-            resources("css")
             resources("assets")
+        }
+        static("css") {
+            resources("css")
+        }
+        static("js") {
             resources("js")
         }
         staticPages()

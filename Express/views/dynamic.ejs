@@ -22,12 +22,12 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="post-heading">
-                            <h1>${article.header}</h1>
-                            <h2 class="subheading">${article.subHeader}</h2>
+                            <h1><%= article.header %></h1>
+                            <h2 class="subheading"><%=article.sub_header%></h2>
                             <span class="meta">
                                 Posted by
-                                ${article.postedBy}
-                                on ${article.datePosted}
+                                <%=article.posted_by%>
+                                on <%=article.date_posted%>
                             </span>
                         </div>
                     </div>
@@ -39,13 +39,13 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
-                      <#list sections as section>   <#-- for loop -->
-                        <h2 class="section-heading">${section.header}</h2>
-                        <p>${section.body}</p>
-                        <#if (section.picUrl?has_content)>
-                            <img src="/assets/img/${section.picUrl}" style="width: 100%" />
-                        </#if>
-                    </#list>
+                        <% for( const section of article.Sections ) { %>   <!-- for loop -->
+                            <h2 class="section-heading"><%=section.header%></h2>
+                            <p><%=section.body%></p>
+                            <% if (section.picture_url != null) { %>
+                                <img src="/assets/img/<%=section.picture_url%>" style="width: 100%" />
+                            <% } %>
+                        <% } %>
                     </div>
                 </div>
             </div>

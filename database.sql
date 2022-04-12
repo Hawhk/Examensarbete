@@ -7,7 +7,8 @@ CREATE TABLE IF NOT EXISTS articles (
     sub_header varchar(255) NOT NULL,
     description varchar(255) NOT NULL,
     date_posted timestamp WITHOUT TIME ZONE NOT NULL,
-    posted_by varchar(128) NOT NULL
+    posted_by varchar(128) NOT NULL,
+    picture_url varchar(128)
 );
 
 
@@ -26,7 +27,8 @@ VALUES (
     'Sint quibusdam quibusdam voluptatem',
     'Eum voluptate qui. Et aut iste autem nemo id ipsa est quae laborum. Soluta sed quidem ut. Repellat voluptatum eius omnis assumenda suscipit quas illo.',
     NOW(),
-    'Darlene Brakus'
+    'Darlene Brakus',
+	'space.jpg'
 ),
 (
 	2,
@@ -34,11 +36,9 @@ VALUES (
     'Reprehenderit nihil sint commodi explicabo.',
     'Maxime et est et. Officia ad ut dignissimos repudiandae dolorum molestias ad. Ex mollitia expedita accusantium autem suscipit sed et quis.',
     NOW(),
-    'Jeff Blick'
-)
-
-
-;
+    'Jeff Blick',
+	'space.jpg'
+);
 
 INSERT INTO sections(header, body, article_id, picture_url)
 VALUES (
@@ -94,7 +94,8 @@ Beatae aut vero beatae natus eius. Corporis mollitia commodi. Consequatur qui vo
 Modi tempore ut. Facilis et voluptatem iusto illum suscipit sed omnis nesciunt. Porro fuga magnam ut. Similique qui et inventore aperiam. Cum nesciunt voluptatum nostrum est.
  
 Rerum nulla et nobis impedit reprehenderit. Dignissimos similique ut. Quas ut qui delectus quia sed debitis et aut facilis. Ut reprehenderit odio minus. Magni harum consectetur dolor placeat libero deleniti ut voluptate. Pariatur omnis hic blanditiis dolores ab et nam similique.',
-    2
+    2,
+	NULL
 ),
 (
     'Dolorem qui provident eligendi voluptas.',
@@ -103,7 +104,8 @@ Rerum nulla et nobis impedit reprehenderit. Dignissimos similique ut. Quas ut qu
 Consequatur eveniet doloribus sunt exercitationem repellendus. Nulla blanditiis aut dolores placeat perferendis rerum vel exercitationem. Quo quas optio eos quam id exercitationem commodi at corporis.
  
 Molestias reiciendis earum aut nam. Ullam non fuga nihil ab quia sit ut iste. Vitae possimus alias itaque reiciendis sunt beatae dicta eligendi repudiandae. Laborum quibusdam facere ex et magni tempore laborum. Eos non soluta neque modi non eveniet provident sit qui. Aut veritatis quia odio quia doloremque.',
-    2
+    2,
+	NULL
 ),
 (
     'Quia aliquid qui blanditiis laborum qui repudiandae aut rerum.',
