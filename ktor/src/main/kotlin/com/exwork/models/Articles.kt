@@ -14,6 +14,7 @@ object Articles : IntIdTable() {
     val description = varchar("description", 255)
     val datePosted = datetime("date_posted")
     val postedBy = varchar("posted_by", 128)
+    val picUrl = varchar("picture_url", 128)
 }
 
 class Article(id: EntityID<Int>) : IntEntity(id) {
@@ -23,5 +24,6 @@ class Article(id: EntityID<Int>) : IntEntity(id) {
     var description by Articles.description
     var datePosted by Articles.datePosted
     var postedBy by Articles.postedBy
+    var picUrl by Articles.picUrl
     val sections by Section referrersOn Sections.article
 }
