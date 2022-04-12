@@ -1,22 +1,23 @@
+DROP TABLE IF EXISTS sections CASCADE;
+DROP TABLE IF EXISTS articles CASCADE;
+
 CREATE TABLE IF NOT EXISTS articles (
     id SERIAL PRIMARY KEY,
-    header varchar(255),
-    sub_header varchar(255),
-    description varchar(255),
-    date_posted timestamp WITHOUT TIME ZONE,
-    posted_by varchar(128)
+    header varchar(255) NOT NULL,
+    sub_header varchar(255) NOT NULL,
+    description varchar(255) NOT NULL,
+    date_posted timestamp WITHOUT TIME ZONE NOT NULL,
+    posted_by varchar(128) NOT NULL
 );
 
 
 CREATE TABLE IF NOT EXISTS sections (
     id SERIAL PRIMARY KEY,
-    header varchar(255),
-    body text,
-    article_id int REFERENCES articles(id)
+    header varchar(255) NOT NULL,
+    body text NOT NULL,
+    picture_url varchar(128),
+    article_id int REFERENCES articles(id) NOT NULL
 );
-
-TRUNCATE TABLE sections CASCADE;
-TRUNCATE TABLE articles CASCADE;
 
 INSERT INTO articles
 VALUES (
@@ -39,31 +40,32 @@ VALUES (
 
 ;
 
-INSERT INTO sections(header, body, article_id)
+INSERT INTO sections(header, body, article_id, picture_url)
 VALUES (
     'Ut dolor necessitatibus magnam qui repellat.',
     'Dolor rerum provident repellendus quis sequi quasi dolorem quidem porro. Odit qui aperiam et illum reprehenderit officia dignissimos error. Aut omnis incidunt iusto et sit tempore assumenda sed rerum.
  Omnis consequatur neque. Iure laudantium aspernatur quia corrupti vel distinctio impedit ut ut. Quis est quod hic. Dicta quis illum aspernatur sit nam incidunt. Aliquam corporis ut et maiores doloribus illum eaque sint. Optio quia nam laudantium.
  Qui eos sequi facere nam. Quam odit possimus deleniti quos amet aut sint debitis eius. Tempore a vitae similique sit veritatis cum quasi. Quas cumque dicta et. Cupiditate eius eaque velit neque sit.',
-    1
+    1,
+    'book.jpg'
 ),
 (
     'Dolorum facilis sed molestiae mollitia blanditiis.',
     'Unde aut adipisci unde praesentium perspiciatis voluptatem iure nisi excepturi. Iste modi voluptatum dolorum. Ut ad odio aut accusantium aliquam tempora deserunt qui distinctio. Tempora illo blanditiis.
 Totam quas fuga quibusdam provident vel. Repellat enim consequatur excepturi temporibus exercitationem. Accusantium molestias dolores cum delectus labore qui. Aspernatur similique dignissimos. Ut tempore pariatur. Deserunt sit aliquid sit et et neque earum delectus.
 Velit nihil totam. Consequatur et culpa ipsum sed. Sint ipsum sed et in sequi ut dolore autem architecto.',
-    1
-);
-
-INSERT INTO sections(header, body, article_id)
-VALUES (
+    1,
+    NULL
+),
+(
     'Saepe fuga qui voluptas harum quisquam.',
     'Qui omnis ut et molestias quis. Eum perferendis maxime quae. Reiciendis aut qui eos repellat repudiandae quibusdam assumenda.
  
 Est nesciunt quis. Sunt non fugit sit eveniet vel nesciunt. Id corporis unde mollitia molestiae sunt laboriosam delectus. Temporibus deserunt ducimus. Sed quam ut saepe perspiciatis a facilis omnis.
  
 Quos molestiae soluta blanditiis id. Atque qui explicabo. Molestias necessitatibus commodi. Facilis explicabo ab corrupti doloremque excepturi. Quae sed porro maiores enim aperiam.',
-    2
+    2,
+    NULL
 ),
 (
     'Eos qui atque quam veniam dolores ex.',
@@ -72,7 +74,8 @@ Quos molestiae soluta blanditiis id. Atque qui explicabo. Molestias necessitatib
 Voluptas molestiae ex nostrum assumenda. Impedit recusandae sunt reiciendis minus. Qui explicabo provident nobis. Perspiciatis ipsa praesentium repudiandae quis quia quas nihil. Necessitatibus dolores hic qui sed praesentium repellendus.
  
 Rem minima voluptatem quae dolorem ipsam ut. Quasi explicabo fuga. Eveniet qui corporis aliquam nemo repudiandae. Quia eaque tenetur enim ut mollitia.',
-    2
+    2,
+    'for_sale.jpg'
 ),
 (
     'Blanditiis sed fugiat impedit voluptatem.',
@@ -81,7 +84,8 @@ Rem minima voluptatem quae dolorem ipsam ut. Quasi explicabo fuga. Eveniet qui c
 Soluta voluptatum tempore sit delectus quisquam numquam et sed in. Dolorem deserunt omnis inventore quae nihil non vel repudiandae mollitia. Quia modi nihil. Consequatur distinctio id aliquid vero.
  
 Beatae aut vero beatae natus eius. Corporis mollitia commodi. Consequatur qui voluptatum dolores. Doloribus facilis consequatur.',
-    2
+    2,
+    NULL
 ),
 (
     'Laborum consequatur nam maxime velit qui cupiditate recusandae veniam.',
@@ -108,7 +112,8 @@ Molestias reiciendis earum aut nam. Ullam non fuga nihil ab quia sit ut iste. Vi
 Odio similique cumque esse delectus similique reiciendis ea. Fugit fugit sit sint non ut tenetur. Tempora rem pariatur id architecto dolores ducimus voluptas aliquid explicabo. Et non totam aliquam dolores quia possimus. Vel nisi dolorem non.
  
 Enim optio numquam corporis eos sunt et dolorem. Nam excepturi odio ullam earum optio dolorem magnam autem. Illum voluptatem modi maxime veniam ducimus.',
-    2
+    2,
+    NULL
 ),
 (
     'Doloribus nobis et esse nesciunt commodi non consequuntur.',
@@ -117,7 +122,8 @@ Enim optio numquam corporis eos sunt et dolorem. Nam excepturi odio ullam earum 
 Aliquid ducimus eum quia nesciunt similique officiis minima. Quia consectetur voluptatem non. Ipsa id quia tenetur vitae ipsum expedita saepe itaque illo.
  
 Reiciendis id quis. Possimus rerum ex animi nam vel. Quibusdam et enim repellat beatae beatae numquam. Quis a libero cumque officiis et voluptatem aut. Dolorem aspernatur maxime excepturi deserunt voluptate quas. Dolorem minus voluptas non vel aut.',
-    2
+    2,
+    'cellphone.jpg'
 ),
 (
     'Sequi velit quisquam.',
@@ -126,7 +132,8 @@ Reiciendis id quis. Possimus rerum ex animi nam vel. Quibusdam et enim repellat 
 Placeat repellat voluptate earum. Consequatur voluptatem et voluptatem officia numquam consequatur. Et autem ut quasi occaecati libero. Eius tempora odit ea qui ipsum voluptatem ad. In ut libero ut.
  
 Quod reprehenderit libero iste omnis iusto error quam nam ex. Eum odio voluptas aut animi rerum odio sed ut. Nobis placeat excepturi. Reiciendis tempore repellendus fugit inventore. Tenetur ut ullam voluptatem assumenda earum earum.',
-    2
+    2,
+    NULL
 ),
 (
     'Qui vero velit modi eos libero sapiente.',
@@ -135,7 +142,8 @@ Quod reprehenderit libero iste omnis iusto error quam nam ex. Eum odio voluptas 
 Eos corrupti voluptatem voluptas quia. Voluptatem vero tempora dignissimos sed. Tempore odit delectus aliquam maxime porro numquam.
  
 Atque omnis dolor rem sapiente officiis veniam. Nostrum quisquam ratione voluptate. Repellat adipisci repellendus voluptate neque quibusdam pariatur. Corporis aut velit beatae. Voluptate tempore modi. Aut sint provident provident consectetur tempore incidunt nesciunt.',
-    2
+    2,
+    NULL
 ),
 (
     'Ab sit quae consectetur.',
@@ -144,7 +152,8 @@ Atque omnis dolor rem sapiente officiis veniam. Nostrum quisquam ratione volupta
 Maiores amet non corporis dolore magni hic aut quis non. Rem dolore dolore. Consectetur eum vitae numquam debitis sit pariatur qui corrupti facere. Ut voluptate mollitia. Qui omnis fugiat dolor non. Nesciunt labore vitae sed facilis.
  
 Sit numquam sint voluptatum saepe ut sit. In eaque vel consectetur corporis sequi. Nisi aliquid maxime expedita qui officia natus excepturi consectetur. Maiores illum et nam in deleniti quasi. Quaerat sed consequatur recusandae in sint. Blanditiis odit nostrum voluptatem incidunt quia perferendis nostrum.',
-    2
+    2,
+    'book.jpg'
 ),
 (
     'Saepe fuga qui voluptas harum quisquam.',
@@ -153,7 +162,8 @@ Sit numquam sint voluptatum saepe ut sit. In eaque vel consectetur corporis sequ
 Est nesciunt quis. Sunt non fugit sit eveniet vel nesciunt. Id corporis unde mollitia molestiae sunt laboriosam delectus. Temporibus deserunt ducimus. Sed quam ut saepe perspiciatis a facilis omnis.
  
 Quos molestiae soluta blanditiis id. Atque qui explicabo. Molestias necessitatibus commodi. Facilis explicabo ab corrupti doloremque excepturi. Quae sed porro maiores enim aperiam.',
-    2
+    2, 
+    NULL
 ),
 (
     'Eos qui atque quam veniam dolores ex.',
@@ -162,7 +172,8 @@ Quos molestiae soluta blanditiis id. Atque qui explicabo. Molestias necessitatib
 Voluptas molestiae ex nostrum assumenda. Impedit recusandae sunt reiciendis minus. Qui explicabo provident nobis. Perspiciatis ipsa praesentium repudiandae quis quia quas nihil. Necessitatibus dolores hic qui sed praesentium repellendus.
  
 Rem minima voluptatem quae dolorem ipsam ut. Quasi explicabo fuga. Eveniet qui corporis aliquam nemo repudiandae. Quia eaque tenetur enim ut mollitia.',
-    2
+    2, 
+    NULL
 ),
 (
     'Blanditiis sed fugiat impedit voluptatem.',
@@ -171,7 +182,8 @@ Rem minima voluptatem quae dolorem ipsam ut. Quasi explicabo fuga. Eveniet qui c
 Soluta voluptatum tempore sit delectus quisquam numquam et sed in. Dolorem deserunt omnis inventore quae nihil non vel repudiandae mollitia. Quia modi nihil. Consequatur distinctio id aliquid vero.
  
 Beatae aut vero beatae natus eius. Corporis mollitia commodi. Consequatur qui voluptatum dolores. Doloribus facilis consequatur.',
-    2
+    2, 
+    NULL
 ),
 (
     'Laborum consequatur nam maxime velit qui cupiditate recusandae veniam.',
@@ -180,7 +192,8 @@ Beatae aut vero beatae natus eius. Corporis mollitia commodi. Consequatur qui vo
 Modi tempore ut. Facilis et voluptatem iusto illum suscipit sed omnis nesciunt. Porro fuga magnam ut. Similique qui et inventore aperiam. Cum nesciunt voluptatum nostrum est.
  
 Rerum nulla et nobis impedit reprehenderit. Dignissimos similique ut. Quas ut qui delectus quia sed debitis et aut facilis. Ut reprehenderit odio minus. Magni harum consectetur dolor placeat libero deleniti ut voluptate. Pariatur omnis hic blanditiis dolores ab et nam similique.',
-    2
+    2, 
+    NULL
 ),
 (
     'Dolorem qui provident eligendi voluptas.',
@@ -189,7 +202,8 @@ Rerum nulla et nobis impedit reprehenderit. Dignissimos similique ut. Quas ut qu
 Consequatur eveniet doloribus sunt exercitationem repellendus. Nulla blanditiis aut dolores placeat perferendis rerum vel exercitationem. Quo quas optio eos quam id exercitationem commodi at corporis.
  
 Molestias reiciendis earum aut nam. Ullam non fuga nihil ab quia sit ut iste. Vitae possimus alias itaque reiciendis sunt beatae dicta eligendi repudiandae. Laborum quibusdam facere ex et magni tempore laborum. Eos non soluta neque modi non eveniet provident sit qui. Aut veritatis quia odio quia doloremque.',
-    2
+    2, 
+    NULL
 ),
 (
     'Quia aliquid qui blanditiis laborum qui repudiandae aut rerum.',
@@ -198,7 +212,8 @@ Molestias reiciendis earum aut nam. Ullam non fuga nihil ab quia sit ut iste. Vi
 Odio similique cumque esse delectus similique reiciendis ea. Fugit fugit sit sint non ut tenetur. Tempora rem pariatur id architecto dolores ducimus voluptas aliquid explicabo. Et non totam aliquam dolores quia possimus. Vel nisi dolorem non.
  
 Enim optio numquam corporis eos sunt et dolorem. Nam excepturi odio ullam earum optio dolorem magnam autem. Illum voluptatem modi maxime veniam ducimus.',
-    2
+    2, 
+    NULL
 ),
 (
     'Doloribus nobis et esse nesciunt commodi non consequuntur.',
@@ -207,7 +222,8 @@ Enim optio numquam corporis eos sunt et dolorem. Nam excepturi odio ullam earum 
 Aliquid ducimus eum quia nesciunt similique officiis minima. Quia consectetur voluptatem non. Ipsa id quia tenetur vitae ipsum expedita saepe itaque illo.
  
 Reiciendis id quis. Possimus rerum ex animi nam vel. Quibusdam et enim repellat beatae beatae numquam. Quis a libero cumque officiis et voluptatem aut. Dolorem aspernatur maxime excepturi deserunt voluptate quas. Dolorem minus voluptas non vel aut.',
-    2
+    2, 
+    NULL
 ),
 (
     'Sequi velit quisquam.',
@@ -216,7 +232,8 @@ Reiciendis id quis. Possimus rerum ex animi nam vel. Quibusdam et enim repellat 
 Placeat repellat voluptate earum. Consequatur voluptatem et voluptatem officia numquam consequatur. Et autem ut quasi occaecati libero. Eius tempora odit ea qui ipsum voluptatem ad. In ut libero ut.
  
 Quod reprehenderit libero iste omnis iusto error quam nam ex. Eum odio voluptas aut animi rerum odio sed ut. Nobis placeat excepturi. Reiciendis tempore repellendus fugit inventore. Tenetur ut ullam voluptatem assumenda earum earum.',
-    2
+    2, 
+    NULL
 ),
 (
     'Qui vero velit modi eos libero sapiente.',
@@ -225,7 +242,8 @@ Quod reprehenderit libero iste omnis iusto error quam nam ex. Eum odio voluptas 
 Eos corrupti voluptatem voluptas quia. Voluptatem vero tempora dignissimos sed. Tempore odit delectus aliquam maxime porro numquam.
  
 Atque omnis dolor rem sapiente officiis veniam. Nostrum quisquam ratione voluptate. Repellat adipisci repellendus voluptate neque quibusdam pariatur. Corporis aut velit beatae. Voluptate tempore modi. Aut sint provident provident consectetur tempore incidunt nesciunt.',
-    2
+    2, 
+    'map.jpg'
 ),
 (
     'Ab sit quae consectetur.',
@@ -234,5 +252,6 @@ Atque omnis dolor rem sapiente officiis veniam. Nostrum quisquam ratione volupta
 Maiores amet non corporis dolore magni hic aut quis non. Rem dolore dolore. Consectetur eum vitae numquam debitis sit pariatur qui corrupti facere. Ut voluptate mollitia. Qui omnis fugiat dolor non. Nesciunt labore vitae sed facilis.
  
 Sit numquam sint voluptatum saepe ut sit. In eaque vel consectetur corporis sequi. Nisi aliquid maxime expedita qui officia natus excepturi consectetur. Maiores illum et nam in deleniti quasi. Quaerat sed consequatur recusandae in sint. Blanditiis odit nostrum voluptatem incidunt quia perferendis nostrum.',
-    2
+    2, 
+    NULL
 );

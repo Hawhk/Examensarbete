@@ -3,11 +3,9 @@ package com.exwork
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 
-import org.jetbrains.exposed.*
 import org.jetbrains.exposed.sql.Database
-import org.jetbrains.exposed.sql.transactions.transaction
 
-import com.exwork.controller.*
+import com.exwork.controllers.configureTemplating
 
 fun main() {
     embeddedServer(Netty, port = 8080, watchPaths = listOf("exwork"), host = "127.0.0.1") {

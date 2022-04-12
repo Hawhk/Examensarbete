@@ -2,15 +2,11 @@ package com.exwork.models
 
 
 import org.jetbrains.exposed.dao.id.IntIdTable
-import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.jodatime.*
 import org.jetbrains.exposed.dao.*
 import org.jetbrains.exposed.dao.id.*
 
-import io.ktor.application.*
-import org.joda.time.DateTime
-
-import java.util.*
+import org.jetbrains.exposed.sql.transactions.transaction
 
 object Articles : IntIdTable() {
     val header = varchar("header", 255)
@@ -28,17 +24,4 @@ class Article(id: EntityID<Int>) : IntEntity(id) {
     var datePosted by Articles.datePosted
     var postedBy by Articles.postedBy
     val sections by Section referrersOn Sections.article
-}
-
-object Sections : IntIdTable() {
-    val header = varchar("header", 255)
-    val body = text("body")
-    val article = reference("article_id", Articles)
-}
-
-class Section(id: EntityID<Int>) : IntEntity(id) {
-    companion object : IntEntityClass<Section>(Sections)
-    var header by Sections.header
-    var body by Sections.body
-    var article by Article referencedOn Sections.article
 }

@@ -1,29 +1,24 @@
-package com.exwork.controller
+package com.exwork.controllers
 
 // import freemarker.cache.*
 import org.jetbrains.exposed.sql.transactions.transaction
 import io.ktor.freemarker.*
 import io.ktor.application.*
-import io.ktor.response.*
-// import io.ktor.request.*
 import io.ktor.routing.route
 import io.ktor.routing.Route
 import io.ktor.routing.get as routeGet
-// import io.ktor.http.*
-import com.exwork.models.Article
-import com.exwork.models.Articles
-import com.exwork.models.Section
-import com.exwork.models.Sections
-import org.jetbrains.exposed.sql.Table.Dual.integer
-import java.lang.reflect.TypeVariable
-import kotlin.reflect.full.declaredMemberProperties
+import com.exwork.models.*
+
+
+const val SMALL_ARTICLE = 1
+const val LARGE_ARTICLE = 2
 
 fun Route.dynamicPages() {
     route("/dynamic") {
         route("/small") {
             routeGet {
                 val article = transaction {
-                    Article.findById(1)
+                    Article.findById(SMALL_ARTICLE)
                 }
                 val sections = ArrayList<Section>()
 
@@ -37,7 +32,7 @@ fun Route.dynamicPages() {
         route("/large") {
             routeGet {
                 val article = transaction {
-                    Article.findById(2)
+                    Article.findById(LARGE_ARTICLE)
                 }
                 val sections = ArrayList<Section>()
 

@@ -1,4 +1,4 @@
-package com.exwork.controller
+package com.exwork.controllers
 
 import freemarker.cache.*
 import io.ktor.freemarker.*
@@ -7,7 +7,7 @@ import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.http.content.*
 
-import com.exwork.controller.*
+import com.exwork.controllers.*
 
 
 

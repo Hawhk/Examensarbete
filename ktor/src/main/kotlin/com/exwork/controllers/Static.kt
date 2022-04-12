@@ -1,4 +1,4 @@
-package com.exwork.controller
+package com.exwork.controllers
 
 // import freemarker.cache.*
 import io.ktor.freemarker.*
@@ -17,7 +17,7 @@ fun Route.staticPages() {
         }
         route("/large") {
             get {
-                call.respondTemplate("A large static page!")
+                call.respondTemplate("static_large.html")
             }
         }
     }
