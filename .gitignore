@@ -54,7 +54,6 @@ __pycache__
 
 ktor/bin
 ktor/build
-ktor/gradle/gradle-wrapper.jar
 .gradle
 .idea
 
